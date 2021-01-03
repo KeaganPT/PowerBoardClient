@@ -1,9 +1,11 @@
 import React from 'react'
 import Auth from '../Auth/Auth'
+import Powers from '../Powers/Powers'
 import { Route, Link, Switch } from 'react-router-dom'
 
 type propTypes = {
-    updateToken(newToken: String): void
+    updateToken(newToken: String): void,
+    token: string
 }
 
 
@@ -18,12 +20,14 @@ class Sitebar extends React.Component<propTypes, {}> {
                     <ul className="sidebar-list list-unstyled" style={{ listStyleType: 'none'}}>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/auth">SignUp/Login</Link></li>
+                        <li><Link to="/power-list">Powers</Link></li>
                     </ul>
                 </div>
                 <div className="sitebar-route">
                     <Switch>
                         <Route exact path="/home"></Route>
                         <Route exact path="/auth"><Auth updateToken={this.props.updateToken} /></Route> 
+                        <Route exact path="/power-list"><Powers token={this.props.token}/></Route>
                     </Switch>
                     
                 </div>
