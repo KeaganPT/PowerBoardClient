@@ -30,7 +30,7 @@ class Powers extends React.Component<propTypes, powerTypes>{
             this.setState({
                 powers: data
             });
-            console.log(data);
+            // console.log(data);
         })
     }
 

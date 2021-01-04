@@ -1,6 +1,7 @@
 import React from 'react'
 import Auth from '../Auth/Auth'
 import Powers from '../Powers/Powers'
+import Characters from '../Characters/Characters'
 import { Route, Link, Switch } from 'react-router-dom'
 
 type propTypes = {
@@ -21,6 +22,7 @@ class Sitebar extends React.Component<propTypes, {}> {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/auth">SignUp/Login</Link></li>
                         <li><Link to="/power-list">Powers</Link></li>
+                        <li><Link to="/character-list">Characters</Link></li>
                     </ul>
                 </div>
                 <div className="sitebar-route">
@@ -28,6 +30,7 @@ class Sitebar extends React.Component<propTypes, {}> {
                         <Route exact path="/home"></Route>
                         <Route exact path="/auth"><Auth updateToken={this.props.updateToken} /></Route> 
                         <Route exact path="/power-list"><Powers token={this.props.token}/></Route>
+                        <Route exact path="/character-list"><Characters token={this.props.token} /></Route>
                     </Switch>
                     
                 </div>

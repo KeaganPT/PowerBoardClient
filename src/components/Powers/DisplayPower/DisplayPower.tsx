@@ -9,7 +9,7 @@ const DisplayPowers = (props: any) => {
                 return(
                     <div key={index} style={{border: '2px solid black'}}>
                         <h3>{power.powerName}</h3>
-                        <h4>{power.description}</h4>
+                        <p>{power.description}</p>
                         <h5>{power.user.userName}</h5>
                     </div>
                 )
