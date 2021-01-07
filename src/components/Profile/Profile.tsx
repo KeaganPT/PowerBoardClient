@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfileDisplay from './ProfileDisplay/ProfileDisplay'
+import Button from '@material-ui/core/Button'
 
 type propTypes = {
     token: string | null
@@ -20,7 +21,8 @@ type userTypes = {
     user: {userName: string},
     userPowers: Array<powerInterface>,
     userCharacters: Array<characterInterface>,
-    power: powerInterface
+    power: powerInterface,
+    list: number,
 }
 
 class Profile extends React.Component<propTypes, userTypes>{
@@ -30,7 +32,8 @@ class Profile extends React.Component<propTypes, userTypes>{
             user: {userName: 'dave'},
             userPowers: [],
             userCharacters: [],
-            power: {powerName: '', description: ''}
+            power: {powerName: '', description: ''},
+            list: 0
         }
     }
 
@@ -80,7 +83,11 @@ class Profile extends React.Component<propTypes, userTypes>{
     render(){
         return(
             <div>
-                <ProfileDisplay userPowers={this.state.userPowers} userCharacters={this.state.userCharacters} user={this.state.user}/>
+                <div>
+                    <Button onClick={() => this.setState({list: 0})}>My Powers</Button>
+                    <Button onClick={() => this.setState({list: 1})}>My Characters</Button>
+                </div>
+                <ProfileDisplay userPowers={this.state.userPowers} userCharacters={this.state.userCharacters} user={this.state.user} viewConductor={this.state.list} />
             </div>
         )
     }
