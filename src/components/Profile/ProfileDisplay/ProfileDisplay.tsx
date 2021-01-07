@@ -43,7 +43,8 @@ type characterInterface = {
 type PropsInterface = {
     user: {userName: string}
     userPowers: Array<powerInterface>,
-    userCharacters: Array<characterInterface>
+    userCharacters: Array<characterInterface>,
+    viewConductor: number,
 }
 
 // FUNCTIONAL COMPONENT
@@ -56,6 +57,7 @@ const ProfileDisplay = (props: PropsInterface) => {
         <div className="container">
             <div className="powerMap">
                 {props.userPowers.length > 0 && props.userPowers.map((power: powerInterface, index: number) => {
+                    if(props.viewConductor === 0) {
                     return(
                         <div className={classes.divContain} key={index}>
                             <Card className={classes.root}>
@@ -75,11 +77,12 @@ const ProfileDisplay = (props: PropsInterface) => {
                                 </CardContent>
                             </Card>
                         </div>
-                    )
+                    )}
                 })}
             </div>
             <div className="characterMap">
                 {props.userCharacters.length > 0 && props.userCharacters.map((character: characterInterface, index: number) => {
+                    if(props.viewConductor === 1) { 
                     return(
                         <div className={classes.divContain} key={index}>
                             <Card className={classes.root}>
@@ -99,7 +102,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                 </CardContent>
                             </Card>
                         </div>
-                    )
+                    )}
                 })}
             </div>
         </div>
