@@ -4,14 +4,14 @@ import Sitebar from './components/Navbar/Navbar';
 import {BrowserRouter as Router} from "react-router-dom"
 
 type tokenTypes = {
-  sessionToken: string
+  sessionToken: string | null
 }
 
 class App extends React.Component<{}, tokenTypes> {
   constructor(props: any){
     super(props)
     this.state = {
-      sessionToken: ''
+      sessionToken: localStorage.getItem('token') ? localStorage.getItem('token') : ''
     }
     this.updateToken = this.updateToken.bind(this);
     
@@ -22,7 +22,9 @@ class App extends React.Component<{}, tokenTypes> {
     this.setState({sessionToken: newToken})
   }
 
+
   render(){
+    
   return (
     <div className="App">
       <Router>

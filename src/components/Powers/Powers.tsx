@@ -1,16 +1,22 @@
 import React from 'react'
 import DisplayPowers from './DisplayPower/DisplayPower'
 
+type powerInterface = {
+    powerName: string,
+    description: string,
+    user: {userName: string}
+}
+
 type powerTypes = {
-    powers: Array<any>
+    powers: Array<powerInterface>
 }
 
 type propTypes = {
-    token: string
+    token: string | null
 }
 
 class Powers extends React.Component<propTypes, powerTypes>{
-    constructor(props: any) {
+    constructor(props: propTypes) {
         super(props)
         this.state = {
             powers: [],
@@ -22,7 +28,7 @@ class Powers extends React.Component<propTypes, powerTypes>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token
+                'Authorization': `${this.props.token}`
             }
         })
         .then(res => res.json())

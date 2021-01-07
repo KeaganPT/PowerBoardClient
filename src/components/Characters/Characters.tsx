@@ -1,16 +1,23 @@
 import React from 'react'
 import DisplayCharacter from './DisplayCharacter/DisplayCharacter'
 
+type characterInterface = {
+    characterName: string,
+    tags: Array<string>,
+    description: string,
+    user: {userName: string}
+}
+
 type characterTypes = {
-    characters: Array<any>
+    characters: Array<characterInterface>
 }
 
 type propTypes = {
-    token: string
+    token: string | null
 }
 
 class Characters extends React.Component<propTypes, characterTypes>{
-    constructor(props: any){
+    constructor(props: propTypes){
         super(props)
         this.state = {
             characters: []
@@ -22,7 +29,7 @@ class Characters extends React.Component<propTypes, characterTypes>{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token
+                'Authorization': `${this.props.token}`
             }
         })
         .then(res => res.json())

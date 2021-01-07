@@ -15,7 +15,7 @@ type propTypes = {
 }
 
 class Auth extends React.Component<propTypes, UserTypes>{
-    constructor(props: any) {
+    constructor(props: propTypes) {
         super(props)
         this.state = {
             user: {},
@@ -38,7 +38,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.setState({
                     user: data
                 });
@@ -57,7 +57,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 console.log('successful fetch');
                 this.setState({
                     user: data
@@ -67,13 +67,13 @@ class Auth extends React.Component<propTypes, UserTypes>{
             .catch(err => console.log(err))
     }
 
-    handleSubmitRegister = (event: any) => {
+    handleSubmitRegister = (event: React.MouseEvent) => {
         event.preventDefault()
         console.log('helloWorld!')
         this.fetchSignUp();
     }
 
-    handleSubmitLogin = (event: any) => {
+    handleSubmitLogin = (event: React.MouseEvent) => {
         event.preventDefault()
         console.log('sumbitLogin Success')
         this.fetchLogin()
