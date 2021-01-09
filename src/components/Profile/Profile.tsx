@@ -1,14 +1,19 @@
 import React from 'react'
 import ProfileDisplay from './ProfileDisplay/ProfileDisplay'
 import Button from '@material-ui/core/Button'
+import CreatePower from './CreateUpdateDelete/CreatePower'
 
+
+//Prop Types
 type propTypes = {
     token: string | null
 }
 
+//Power and character types
 type powerInterface = {
     powerName: string,
     description: string,
+    id: number
 }
 
 type characterInterface = {
@@ -17,11 +22,11 @@ type characterInterface = {
     description: string,
 }
 
+// User types
 type userTypes = {
     user: {userName: string},
     userPowers: Array<powerInterface>,
     userCharacters: Array<characterInterface>,
-    power: powerInterface,
     list: number,
 }
 
@@ -32,11 +37,11 @@ class Profile extends React.Component<propTypes, userTypes>{
             user: {userName: 'dave'},
             userPowers: [],
             userCharacters: [],
-            power: {powerName: '', description: ''},
-            list: 0
+            list: 0,
         }
     }
 
+    //Fetch User request
     fetchUser() {
         fetch('http://localhost:3000/user/mine', {
             method: 'GET',
@@ -52,42 +57,48 @@ class Profile extends React.Component<propTypes, userTypes>{
                 userPowers: data.powers,
                 userCharacters: data.characters
             });
-            // console.log(data);
+            // console.log(this.props.token);
         })
     }
 
-    createPower() {
-        fetch(`http://localhost:3000/powers/`, {
-            method: 'POST',
-            body: JSON.stringify ({
-                powerName: this.state.power.powerName,
-                description: this.state.power.description
-            }),
+    //DeletePowerFetch
+    deletePower(id: number, token: string ){
+        fetch(`http://localhost:3000/powers/${id}`, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `${this.props.token}`
+                'Authorization': `${token}`
             }
         })
         .catch(err => console.log(err))
     }
 
-    handlePowerSubmit(event: React.MouseEvent) {
-        event.preventDefault();
-        this.createPower();
-    }
-
+    //auto runs fetch user
     componentDidMount() {
         this.fetchUser()
     }
 
     render(){
+        
+
         return(
             <div>
-                <div>
+                <div className="ModalsDiv">
+                    <CreatePower token={this.props.token}/>
+
+                </div>
+                <div className="viewConductor">
                     <Button onClick={() => this.setState({list: 0})}>My Powers</Button>
                     <Button onClick={() => this.setState({list: 1})}>My Characters</Button>
                 </div>
-                <ProfileDisplay userPowers={this.state.userPowers} userCharacters={this.state.userCharacters} user={this.state.user} viewConductor={this.state.list} />
+                <ProfileDisplay 
+                    userPowers={this.state.userPowers} 
+                    userCharacters={this.state.userCharacters} 
+                    user={this.state.user} 
+                    viewConductor={this.state.list}
+                    deletePower={this.deletePower} 
+                    token={this.props.token}
+                />
             </div>
         )
     }
