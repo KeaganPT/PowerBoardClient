@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 type powerInterface = {
     powerName: string,
     description: string,
+    id: number
 }
 
 type characterInterface = {
@@ -45,6 +46,8 @@ type PropsInterface = {
     userPowers: Array<powerInterface>,
     userCharacters: Array<characterInterface>,
     viewConductor: number,
+    deletePower(id: number, token: string | null): void,
+    token: string | null
 }
 
 // FUNCTIONAL COMPONENT
@@ -74,6 +77,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                     <Typography variant="body2" component="p">
                                         {props.user.userName}
                                     </Typography>
+                                    <Button type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
