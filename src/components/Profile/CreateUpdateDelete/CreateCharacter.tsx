@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import APIURL from '../../../helpers/enviorment'
 
 type propTypes ={
     token: string | null
@@ -25,7 +26,7 @@ class CreateCharacter extends React.Component<propTypes, createCharacterTypes> {
     }
 
     createCharacterFetch() {
-        fetch('http://localhost:3000/characters/', {
+        fetch(`${APIURL}/characters/`, {
             method: 'POST',
             body: JSON.stringify({
                 characterName: this.state.characterName,

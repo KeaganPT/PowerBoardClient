@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import APIURL from '../../../helpers/enviorment'
 
 type propTypes = {
     token: string | null,
@@ -26,7 +27,7 @@ class UpdatePower extends React.Component<propTypes, updatePowerTypes> {
     }
 
     updatePowerFetch(id: number) {
-        fetch(`http://localhost:3000/powers/${id}`, {
+        fetch(`${APIURL}/powers/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 powerName: this.state.powerName,

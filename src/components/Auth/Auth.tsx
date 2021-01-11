@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@material-ui/core'
+import APIURL from '../../helpers/enviorment'
 
 type UserTypes = {
     user: {},
@@ -30,7 +31,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
     }
 
     fetchSignUp() {
-        fetch('http://localhost:3000/user/register', {
+        fetch(`${APIURL}/user/register`, {
             method: 'POST',
             body: JSON.stringify({email: this.state.email, userName: this.state.userNameSignup, password: this.state.passwordSignup}),
             headers: new Headers ({
@@ -50,7 +51,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
     }
 
     fetchLogin = () => {
-        fetch('http://localhost:3000/user/login', {
+        fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify({userName: this.state.userNameLogin, password: this.state.passwordLogin}),
             headers: new Headers ({

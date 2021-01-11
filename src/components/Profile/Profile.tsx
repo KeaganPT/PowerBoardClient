@@ -3,7 +3,7 @@ import ProfileDisplay from './ProfileDisplay/ProfileDisplay'
 import Button from '@material-ui/core/Button'
 import CreatePower from './CreateUpdateDelete/CreatePower'
 import CreateCharacter from './CreateUpdateDelete/CreateCharacter'
-
+import APIURL from '../../helpers/enviorment'
 
 //Prop Types
 type propTypes = {
@@ -45,7 +45,7 @@ class Profile extends React.Component<propTypes, userTypes>{
 
     //Fetch User request
     fetchUser() {
-        fetch('http://localhost:3000/user/mine', {
+        fetch(`${APIURL}/user/mine`, {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ class Profile extends React.Component<propTypes, userTypes>{
 
     //DeletePowerFetch
     deletePower(id: number, token: string ){
-        fetch(`http://localhost:3000/powers/${id}`, {
+        fetch(`${APIURL}/powers/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ class Profile extends React.Component<propTypes, userTypes>{
 
     //DeleteCharacterFetch
     deleteCharacter(id: number, token: string) {
-        fetch(`http://localhost:3000/characters/${id}`, {
+        fetch(`${APIURL}/characters/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

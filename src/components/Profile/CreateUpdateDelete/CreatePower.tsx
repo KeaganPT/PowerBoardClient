@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import APIURL from '../../../helpers/enviorment'
 
 
 type propTypes = {
@@ -24,7 +25,7 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
     }
 
     createPowerFetch() {
-        fetch('http://localhost:3000/powers/', {
+        fetch(`${APIURL}/powers/`, {
             method: 'POST',
             body: JSON.stringify({
                 powerName: this.state.powerName,

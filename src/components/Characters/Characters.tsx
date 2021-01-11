@@ -1,5 +1,6 @@
 import React from 'react'
 import DisplayCharacter from './DisplayCharacter/DisplayCharacter'
+import APIURL from '../../helpers/enviorment'
 
 type characterInterface = {
     characterName: string,
@@ -31,7 +32,7 @@ class Characters extends React.Component<propTypes, characterTypes>{
     }
 
     getAllCharacters() {
-        fetch('http://localhost:3000/characters/', {
+        fetch(`${APIURL}/characters/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +48,7 @@ class Characters extends React.Component<propTypes, characterTypes>{
     }
 
     deleteCharacter(id: number) {
-        fetch(`http://localhost:3000/characters/${id}`, {
+        fetch(`${APIURL}/characters/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
