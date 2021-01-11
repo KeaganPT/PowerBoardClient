@@ -82,7 +82,7 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
                             <label>description for updated character</label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})}/>
-                            <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Updated Character</Button>
+                            <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Updated</Button>
                         </form>
                     </div>
                 </Dialog>

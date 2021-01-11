@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { Button, Dialog } from '@material-ui/core/';
+import UpdateCharacter from '../../Profile/CreateUpdateDelete/UpdateCharacter'
+import UpdatePower from '../../Profile/CreateUpdateDelete/UpdatePower';
 
 //STYLES
 const useStyles = makeStyles({
@@ -30,41 +33,112 @@ type characterInterface = {
     characterName: string,
     tags: Array<string>,
     description: string,
-    user: {userName: string}
+    user: { userName: string, role: string },
+    id: number
 }
 
 type characterProps = {
-    characterResults: Array<characterInterface>
+    characterResults: Array<characterInterface>,
+    deleteCharacter(id: number): void,
+    userRole: string | null,
+    token: string | null
+}
+
+type modalType = {
+    modalOpen: boolean
+}
+
+type modalProps = {
+    id: number,
+    deleteCharacter(id: number): void
+}
+
+class Modal extends React.Component<modalProps, modalType> {
+    constructor(props: modalProps) {
+        super(props)
+        this.state = {
+            modalOpen: false
+        }
+    }
+
+    handleOpen() {
+        this.setState({ modalOpen: true })
+    }
+
+    handleClose() {
+        this.setState({ modalOpen: false })
+    }
+
+    render() {
+        return (
+            <div>
+                <Button onClick={() => this.handleOpen()} >Delete Character</Button>
+                <Dialog
+                    open={this.state.modalOpen}
+                    onClose={() => this.handleClose()}
+                >
+                    <div style={{ padding: '10px' }}>
+                        <h2>Are You Sure?</h2>
+                        <br />
+                        <Button onClick={() => this.props.deleteCharacter(this.props.id)}>Delete</Button>
+                    </div>
+                </Dialog>
+            </div>
+        )
+    }
 }
 
 const DisplayCharacter = (props: characterProps) => {
     const classes = useStyles()
 
-    return(
-        <div>
-            {props.characterResults.map((character: characterInterface, index: number) => {
-                return(
-                    <div className={classes.divContain} key={index}>
-                        <Card className={classes.root}>
-                            <CardContent>
-                                <Typography className={classes.title} color="textPrimary" gutterBottom>
-                                    Character:
+
+    return (
+        <>
+            <div>
+                {props.characterResults.map((character: characterInterface, index: number) => {
+
+                    let isHidden
+
+                    if (props.userRole !== 'admin') {
+                        isHidden = true
+                    }
+
+
+                    return (
+                        <div className={classes.divContain} key={index}>
+                            <Card className={classes.root}>
+                                <CardContent>
+                                    <Typography className={classes.title} color="textPrimary" gutterBottom>
+                                        Character:
                                 </Typography>
-                                <Typography variant="h5" component="h2">
-                                    {character.characterName}
-                                </Typography>
-                                <Typography className={classes.pos} color="textSecondary">
-                                    {character.description}
-                                </Typography>
-                                <Typography variant="body2" component="p">
-                                    {character.user.userName}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    </div>
-                )
-            })}
-        </div>
+                                    <Typography variant="h5" component="h2">
+                                        {character.characterName}
+                                    </Typography>
+                                    <Typography className={classes.pos} color="textSecondary">
+                                        {character.description}
+                                    </Typography>
+                                    <Typography variant="body2" component="p">
+                                        {character.user.userName}
+                                    </Typography>
+                                    <div className="modalDiv" hidden={isHidden}>
+                                        <UpdateCharacter
+                                            token={props.token}
+                                            id={character.id}
+                                        />
+                                        <Modal
+                                            id={character.id}
+                                            deleteCharacter={props.deleteCharacter}
+
+                                        >
+                                        </Modal>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    )
+                })}
+            </div>
+        </>
     )
 }
 
