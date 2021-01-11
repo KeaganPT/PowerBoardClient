@@ -57,7 +57,7 @@ class Sitebar extends React.Component<propTypes, {}> {
                     <Switch>
                         <Route exact path="/home"></Route>
                         <Route exact path="/auth"><Auth updateToken={this.props.updateToken} setUser={this.props.setUser} /></Route> 
-                        <Route exact path="/power-list"><Powers token={this.props.token}/></Route>
+                        <Route exact path="/power-list"><Powers token={this.props.token} userRole={this.props.user}/></Route>
                         <Route exact path="/character-list"><Characters token={this.props.token} user={this.props.user}/></Route>
                         <Route exact path="/profile"><Profile token={this.props.token}/></Route>
                     </Switch>

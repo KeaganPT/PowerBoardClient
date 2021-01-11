@@ -5,6 +5,7 @@ type powerInterface = {
     powerName: string,
     description: string,
     user: {userName: string}
+    id: number
 }
 
 type powerTypes = {
@@ -12,7 +13,8 @@ type powerTypes = {
 }
 
 type propTypes = {
-    token: string | null
+    token: string | null,
+    userRole: string | null
 }
 
 class Powers extends React.Component<propTypes, powerTypes>{
@@ -21,6 +23,7 @@ class Powers extends React.Component<propTypes, powerTypes>{
         this.state = {
             powers: [],
         }
+        this.deletePower = this.deletePower.bind(this)
     }
 
     getAllPowers() {
@@ -40,6 +43,17 @@ class Powers extends React.Component<propTypes, powerTypes>{
         })
     }
 
+    deletePower(id: number) {
+        fetch(`http://localhost:3000/powers/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${this.props.token}`
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
     componentDidMount() {
         this.getAllPowers()
     }
@@ -47,7 +61,12 @@ class Powers extends React.Component<propTypes, powerTypes>{
     render(){
         return (
             <div>
-                <DisplayPowers powerResults={this.state.powers}/>
+                <DisplayPowers 
+                    powerResults={this.state.powers}
+                    deletePower={this.deletePower}
+                    token={this.props.token}
+                    userRole={this.props.userRole}
+                />
             </div>
         )
     }
