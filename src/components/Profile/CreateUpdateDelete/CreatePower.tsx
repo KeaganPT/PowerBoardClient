@@ -1,6 +1,5 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
 
@@ -39,8 +38,7 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
         .catch(err => console.log(err))
     }
 
-    handleSubmit(event: any) {
-        event.preventDefault()
+    handleSubmit(event: React.MouseEvent) {
         this.createPowerFetch()
     }
 

@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import UpdatePower from '../CreateUpdateDelete/UpdatePower';
 
 //styles
 const useStyles = makeStyles({
@@ -18,7 +19,8 @@ const useStyles = makeStyles({
         maxWidth: 476,
         border: '2px solid black',
         marginLeft: '5%',
-        marginTop: '20px'
+        marginTop: '10px',
+        marginBottom: '20px'
     },
     title: {
         fontSize: 14,
@@ -39,6 +41,7 @@ type characterInterface = {
     characterName: string,
     tags: Array<string>,
     description: string,
+    id: number
 }
 
 type PropsInterface = {
@@ -47,6 +50,7 @@ type PropsInterface = {
     userCharacters: Array<characterInterface>,
     viewConductor: number,
     deletePower(id: number, token: string | null): void,
+    deleteCharacter(id: number, token: string | null): void,
     token: string | null
 }
 
@@ -77,6 +81,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                     <Typography variant="body2" component="p">
                                         {props.user.userName}
                                     </Typography>
+                                    <UpdatePower token={props.token} id={power.id}/>
                                     <Button type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
@@ -103,6 +108,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                     <Typography variant="body2" component="p">
                                         {props.user.userName}
                                     </Typography>
+                                    <Button type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
