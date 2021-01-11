@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import UpdatePower from '../CreateUpdateDelete/UpdatePower';
+import UpdateCharacter from '../CreateUpdateDelete/UpdateCharacter'
 
 //styles
 const useStyles = makeStyles({
@@ -108,6 +109,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                     <Typography variant="body2" component="p">
                                         {props.user.userName}
                                     </Typography>
+                                    <UpdateCharacter token={props.token} id={character.id}/>
                                     <Button type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
