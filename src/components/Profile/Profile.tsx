@@ -2,6 +2,7 @@ import React from 'react'
 import ProfileDisplay from './ProfileDisplay/ProfileDisplay'
 import Button from '@material-ui/core/Button'
 import CreatePower from './CreateUpdateDelete/CreatePower'
+import CreateCharacter from './CreateUpdateDelete/CreateCharacter'
 
 
 //Prop Types
@@ -20,6 +21,7 @@ type characterInterface = {
     characterName: string,
     tags: Array<string>,
     description: string,
+    id: number
 }
 
 // User types
@@ -73,6 +75,18 @@ class Profile extends React.Component<propTypes, userTypes>{
         .catch(err => console.log(err))
     }
 
+    //DeleteCharacterFetch
+    deleteCharacter(id: number, token: string) {
+        fetch(`http://localhost:3000/characters/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
     //auto runs fetch user
     componentDidMount() {
         this.fetchUser()
@@ -85,7 +99,7 @@ class Profile extends React.Component<propTypes, userTypes>{
             <div>
                 <div className="ModalsDiv">
                     <CreatePower token={this.props.token}/>
-
+                    <CreateCharacter token={this.props.token} />
                 </div>
                 <div className="viewConductor">
                     <Button onClick={() => this.setState({list: 0})}>My Powers</Button>
@@ -96,7 +110,8 @@ class Profile extends React.Component<propTypes, userTypes>{
                     userCharacters={this.state.userCharacters} 
                     user={this.state.user} 
                     viewConductor={this.state.list}
-                    deletePower={this.deletePower} 
+                    deletePower={this.deletePower}
+                    deleteCharacter={this.deleteCharacter}
                     token={this.props.token}
                 />
             </div>

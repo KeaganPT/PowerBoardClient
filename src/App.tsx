@@ -4,17 +4,19 @@ import Sitebar from './components/Navbar/Navbar';
 import {BrowserRouter as Router} from "react-router-dom"
 
 type tokenTypes = {
-  sessionToken: string | null
+  sessionToken: string | null,
+  user: string | null
 }
 
 class App extends React.Component<{}, tokenTypes> {
-  constructor(props: any){
+  constructor(props: {}){
     super(props)
     this.state = {
-      sessionToken: localStorage.getItem('token') ? localStorage.getItem('token') : ''
+      sessionToken: localStorage.getItem('token') ? localStorage.getItem('token') : '',
+      user: localStorage.getItem('userRole') ? localStorage.getItem('userRole') : '',
     }
     this.updateToken = this.updateToken.bind(this);
-    
+    this.setUser = this.setUser.bind(this);
   }
 
   updateToken(newToken : string) {
@@ -22,13 +24,22 @@ class App extends React.Component<{}, tokenTypes> {
     this.setState({sessionToken: newToken})
   }
 
+  setUser(userRole : string) {
+    localStorage.setItem('userRole', userRole)
+    this.setState({user: userRole})
+  }
 
   render(){
     
   return (
     <div className="App">
       <Router>
-        <Sitebar updateToken={this.updateToken} token={this.state.sessionToken}/>
+        <Sitebar 
+          updateToken={this.updateToken} 
+          token={this.state.sessionToken} 
+          user={this.state.user}
+          setUser={this.setUser}  
+        />
       </Router>
     </div>
   );

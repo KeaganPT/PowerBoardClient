@@ -12,8 +12,9 @@ import Button from '@material-ui/core/Button';
 
 type propTypes = {
     updateToken(newToken: String): void,
-    token: string | null
-    
+    token: string | null,
+    user: string | null,
+    setUser(user: String): void
 }
 
 const styles = {
@@ -55,9 +56,9 @@ class Sitebar extends React.Component<propTypes, {}> {
                 <div className="sitebar-route">
                     <Switch>
                         <Route exact path="/home"></Route>
-                        <Route exact path="/auth"><Auth updateToken={this.props.updateToken} /></Route> 
-                        <Route exact path="/power-list"><Powers token={this.props.token}/></Route>
-                        <Route exact path="/character-list"><Characters token={this.props.token} /></Route>
+                        <Route exact path="/auth"><Auth updateToken={this.props.updateToken} setUser={this.props.setUser} /></Route> 
+                        <Route exact path="/power-list"><Powers token={this.props.token} userRole={this.props.user}/></Route>
+                        <Route exact path="/character-list"><Characters token={this.props.token} user={this.props.user}/></Route>
                         <Route exact path="/profile"><Profile token={this.props.token}/></Route>
                     </Switch>
                     

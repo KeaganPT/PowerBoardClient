@@ -11,7 +11,8 @@ type UserTypes = {
 }
 
 type propTypes = {
-    updateToken(newToken: String): void
+    updateToken(newToken: String): void,
+    setUser(user: String): void
 }
 
 class Auth extends React.Component<propTypes, UserTypes>{
@@ -38,11 +39,12 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                console.log(data.user.role);
                 this.setState({
                     user: data
                 });
-                this.props.updateToken(data.sessionToken)
+                this.props.updateToken(data.sessionToken);
+                console.log(this.state.user);
             })
             .catch(err => console.log(err))
     }
@@ -57,12 +59,14 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                console.log(data.user.role);
                 console.log('successful fetch');
                 this.setState({
                     user: data
                 });
                 this.props.updateToken(data.sessionToken);
+                console.log(this.state.user);
+                this.props.setUser(data.user.role);
             })
             .catch(err => console.log(err))
     }
