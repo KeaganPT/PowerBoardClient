@@ -27,7 +27,8 @@ const styles = {
     title: {
         flexGrow: 1,
         color: "333333",
-        display: "center"
+        display: "center",
+        font: 'bold'
     }    
 }
 

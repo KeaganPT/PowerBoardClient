@@ -4,6 +4,10 @@
   background-size: cover;
 }
 
+body{
+  background-color: #1B90B4
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
