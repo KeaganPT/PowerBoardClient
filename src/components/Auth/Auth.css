@@ -1,0 +1,11 @@
+.container {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.introSpeech {
+    text-align: center;
+    font: Arial;
+}

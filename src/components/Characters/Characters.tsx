@@ -9,6 +9,7 @@ type characterInterface = {
     user: {userName: string,
     role: string}
     id: number
+    updatedAt: Date
 }
 
 type characterTypes = {

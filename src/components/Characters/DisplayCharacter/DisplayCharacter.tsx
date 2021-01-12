@@ -35,6 +35,7 @@ type characterInterface = {
     description: string,
     user: { userName: string, role: string },
     id: number
+    updatedAt: Date
 }
 
 type characterProps = {
@@ -91,6 +92,17 @@ class Modal extends React.Component<modalProps, modalType> {
 const DisplayCharacter = (props: characterProps) => {
     const classes = useStyles()
 
+    let sortedCharacters = props.characterResults.sort((n1,n2) => {
+        if(n1.updatedAt < n2.updatedAt) {
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt) {
+            return -1;
+        }
+
+        return 0;
+    })
 
     return (
         <>

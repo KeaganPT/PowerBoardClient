@@ -74,10 +74,10 @@ class CreateCharacter extends React.Component<propTypes, createCharacterTypes> {
                             <br />
                             <Input type="text" onChange={(e) => this.setState({characterName: e.target.value})} />
                             <br />
-                            <label>Tags that relate: </label>
+                            {/* <label>Tags that relate: </label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({tags: [e.target.value]})} />
-                            <br />
+                            <br /> */}
                             <label>Give a quick description about your character</label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})} />

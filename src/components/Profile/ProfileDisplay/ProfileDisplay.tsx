@@ -36,6 +36,7 @@ type powerInterface = {
     powerName: string,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 type characterInterface = {
@@ -43,6 +44,7 @@ type characterInterface = {
     tags: Array<string>,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 type PropsInterface = {
@@ -60,6 +62,29 @@ type PropsInterface = {
 const ProfileDisplay = (props: PropsInterface) => {
     const classes = useStyles();
 
+    let sortedPowers = props.userPowers.sort((n1, n2) => {
+        if(n1.updatedAt < n2.updatedAt){
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt){
+            return -1;
+        }
+
+        return 0;
+    }) 
+
+    let sortedCharacters = props.userCharacters.sort((n1,n2) => {
+        if(n1.updatedAt < n2.updatedAt) {
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt) {
+            return -1;
+        }
+
+        return 0;
+    })
 
     return(
         <div className="container">

@@ -33,6 +33,7 @@ type powerInterface = {
     description: string,
     user: {userName: string}
     id: number
+    updatedAt: Date
 }
 
 type powerProps = {
@@ -95,15 +96,28 @@ class Modal extends React.Component<modalProps, modalType> {
 const DisplayPowers = (props: powerProps) => {
     const classes = useStyles();
 
+    let sortedPowers = props.powerResults.sort((n1, n2) => {
+        if(n1.updatedAt < n2.updatedAt){
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt){
+            return -1;
+        }
+
+        return 0;
+    }) 
+
     return(
         <div>
-            {props.powerResults.map((power: powerInterface, index: number) => {
+            {sortedPowers.map((power: powerInterface, index: number) => {
 
                 let isHidden
                 
                 if(props.userRole !== 'admin'){
-                    isHidden = false
+                    isHidden = true
                 }
+
 
                 return(
                     <div className={classes.divContain} key={index}>
@@ -121,7 +135,7 @@ const DisplayPowers = (props: powerProps) => {
                                     <Typography variant="body2" component="p">
                                         {power.user.userName}
                                     </Typography>
-                                    <div className="modalDiv">
+                                    <div className="modalDiv" hidden={isHidden}>
                                         <UpdatePower 
                                             id={power.id}
                                             token={props.token}

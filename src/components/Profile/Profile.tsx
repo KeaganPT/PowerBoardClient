@@ -15,6 +15,7 @@ type powerInterface = {
     powerName: string,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 type characterInterface = {
@@ -22,6 +23,7 @@ type characterInterface = {
     tags: Array<string>,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 // User types

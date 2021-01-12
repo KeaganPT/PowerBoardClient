@@ -76,10 +76,10 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
                             <br/>
                             <Input type="text" onChange={(e) => this.setState({characterName: e.target.value})} />
                             <br />
-                            <label>Tag for character</label>
+                            {/* <label>Tag for character</label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({tags: [e.target.value]})} />
-                            <br />
+                            <br /> */}
                             <label>description for updated character</label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})}/>

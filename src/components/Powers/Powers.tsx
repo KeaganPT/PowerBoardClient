@@ -7,6 +7,7 @@ type powerInterface = {
     description: string,
     user: {userName: string}
     id: number
+    updatedAt: Date
 }
 
 type powerTypes = {
