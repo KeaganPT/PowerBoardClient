@@ -88,22 +88,6 @@ class Auth extends React.Component<propTypes, UserTypes>{
     render() {
         return (
             <div className="container">
-                <form className="signUp" >
-                    <div>
-                        <label >Email:</label>
-                        <input onChange={(e) => this.setState({ email: e.target.value })} name="email" value={this.state.email}></input>
-                    </div>
-                    <div>
-                        <label>Username:</label>
-                        <input type="text" onChange={(e) => this.setState({ userNameSignup: e.target.value })} value={this.state.userNameSignup}></input>
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input type="text" onChange={(e) => this.setState({ passwordSignup: e.target.value })} value={this.state.passwordSignup}></input>
-                    </div>
-                    <Button style={{ backgroundColor: 'lightGray' }} onClick={(e) => this.handleSubmitRegister(e)}>Sign Up</Button>
-                </form>
-
                 <div className="introSpeech">
                     <h3>
                         Hello and Welcome.
@@ -120,18 +104,51 @@ class Auth extends React.Component<propTypes, UserTypes>{
                         Thank you for checking this place out!
                     </h3>
                 </div>
+                <div className="authContainer">
+                    <form className="signUp" >
+                        <div>
+                            <h2>Sign Up</h2>
+                            <label >Email:</label>
+                            <br />
+                            <input onChange={(e) => this.setState({ email: e.target.value })} name="email" value={this.state.email}></input>
+                            <br />
+                        </div>
+                        <div>
+                            <label>Username:</label>
+                            <br />
+                            <input type="text" onChange={(e) => this.setState({ userNameSignup: e.target.value })} value={this.state.userNameSignup}></input>
+                            <br />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <br />
+                            <input type="text" onChange={(e) => this.setState({ passwordSignup: e.target.value })} value={this.state.passwordSignup}></input>
+                            <br />
+                        </div>
+                        <br />
+                        <Button style={{ backgroundColor: 'lightGray' }} onClick={(e) => this.handleSubmitRegister(e)}>Submit</Button>
+                    </form>
 
-                <form className="logIn">
-                    <div>
-                        <label>Username:</label>
-                        <input onChange={(e) => this.setState({ userNameLogin: e.target.value })} value={this.state.userNameLogin} />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input onChange={(e) => this.setState({ passwordLogin: e.target.value })} value={this.state.passwordLogin} />
-                    </div>
-                    <Button style={{ backgroundColor: 'lightGray' }} onClick={(e) => { return this.handleSubmitLogin(e) }}>Log In</Button>
-                </form>
+
+
+                    <form className="logIn">
+                        <div>
+                            <h2>Login</h2>
+                            <label>Username:</label>
+                            <br />
+                            <input onChange={(e) => this.setState({ userNameLogin: e.target.value })} value={this.state.userNameLogin} />
+                            <br />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <br />
+                            <input onChange={(e) => this.setState({ passwordLogin: e.target.value })} value={this.state.passwordLogin} />
+                            <br />
+                        </div>
+                        <br />
+                        <Button style={{ backgroundColor: 'lightGray' }} onClick={(e) => { return this.handleSubmitLogin(e) }}>Submit</Button>
+                    </form>
+                </div>
             </div>
         )
     }

@@ -17,7 +17,8 @@ const useStyles = makeStyles({
         maxWidth: 476,
         border: '2px solid black',
         marginLeft: '5%',
-        marginTop: '20px'
+        marginTop: '10px',
+        marginBottom: '20px'
     },
     title: {
         fontSize: 14,
