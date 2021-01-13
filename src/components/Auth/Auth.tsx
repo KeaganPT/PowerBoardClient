@@ -72,7 +72,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
                 this.props.setUser(data.user.role);
                 
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log('error:', err))
     }
 
     handleSubmitRegister = (event: React.MouseEvent) => {
