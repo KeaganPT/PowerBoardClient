@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import APIURL from '../../helpers/enviorment'
 import './Auth.css'
+import { Alert } from '@material-ui/lab';
 
 type UserTypes = {
     user: {},
@@ -69,6 +70,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
                 this.props.updateToken(data.sessionToken);
                 // console.log(this.state.user);
                 this.props.setUser(data.user.role);
+                
             })
             .catch(err => console.log(err))
     }

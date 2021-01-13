@@ -56,7 +56,7 @@ class UpdatePower extends React.Component<propTypes, updatePowerTypes> {
     render(){
         return(
             <div className="updateModal">
-                <Button type="button" onClick={() => this.handleOpen(this.props.id)}>
+                <Button type="button" style={{border: '1px solid black', marginBottom: '4px'}} onClick={() => this.handleOpen(this.props.id)}>
                     Update Power
                 </Button>
                 <Dialog
@@ -75,7 +75,7 @@ class UpdatePower extends React.Component<propTypes, updatePowerTypes> {
                             <br />
                             <label>What does the power do?:</label>
                             <br />
-                            <Input type="text" onChange={(e) => this.setState({powerDescription: e.target.value})}/>
+                            <textarea style={{width: '80%', border: '1px solid black', paddingBottom: '120px', paddingTop: '10px', fontSize: 14 }} wrap="soft" onChange={(e) => this.setState({powerDescription: e.target.value})}/>
                             <br />
                             <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Updated Power</Button>
                         </form>

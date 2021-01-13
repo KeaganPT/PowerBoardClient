@@ -55,7 +55,7 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
     render(){
         return(
             <div>
-                <button type="button" onClick={() => this.handleOpen()}>
+                <button type="button" style={{marginTop: '5px', border: '1px solid black'}} onClick={() => this.handleOpen()}>
                         Create Power
                 </button>
                 <Dialog
@@ -75,7 +75,7 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
                                 <br />
                                 <label>What does the power do?:</label>
                                 <br />
-                                <Input type="text" onChange={(e) => this.setState({powerDescription: e.target.value})}/>
+                                <textarea style={{width: '80%', border: '1px solid black', paddingBottom: '120px', paddingTop: '10px', fontSize: 14 }} wrap="soft"onChange={(e) => this.setState({powerDescription: e.target.value})}/>
                                 <br />
                                 <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Power</Button>
                             </form>

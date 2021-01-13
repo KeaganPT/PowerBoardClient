@@ -103,9 +103,9 @@ class Profile extends React.Component<propTypes, userTypes>{
                     <CreatePower token={this.props.token}/>
                     <CreateCharacter token={this.props.token} />
                 </div>
-                <div className="viewConductor">
-                    <Button onClick={() => this.setState({list: 0})}>My Powers</Button>
-                    <Button onClick={() => this.setState({list: 1})}>My Characters</Button>
+                <div className="viewConductor" style={{display: 'flex', justifyContent: 'center'}}>
+                    <Button style={{border: '1px solid black', marginRight: '2px'}} onClick={() => this.setState({list: 0})}>My Powers</Button>
+                    <Button style={{border: '1px solid black'}} onClick={() => this.setState({list: 1})}>My Characters</Button>
                 </div>
                 <ProfileDisplay 
                     userPowers={this.state.userPowers} 

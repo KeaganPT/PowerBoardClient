@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Welcome to the PowerBoard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Client side for the creative board to help inspire ideas for characters for stories or games.
 
 ## Available Scripts
 
@@ -39,8 +39,12 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## package json
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Material-ui is used for a good bit of inputs and styling inside this app so you will need to install '@material-ui/core' , '@material-ui/lab'.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+you will also need to install: 'react-dom', 'react-router-dom' and 'react-scripts'
+
+## Here is the deployed version of the client that uses the deployed server 
+
+'kpt-power-board-client.herokuapp.com/'

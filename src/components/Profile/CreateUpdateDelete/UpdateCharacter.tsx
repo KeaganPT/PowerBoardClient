@@ -59,7 +59,7 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
     render(){
         return(
             <div className="updateModal">
-                <Button type="button" onClick={() => this.handleOpen(this.props.id)}>
+                <Button type="button" style={{border: '1px solid black', marginBottom: '4px'}} onClick={() => this.handleOpen(this.props.id)}>
                     Update Character
                 </Button>
                 <Dialog
@@ -82,7 +82,7 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
                             <br /> */}
                             <label>description for updated character</label>
                             <br />
-                            <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})}/>
+                            <textarea style={{width: '80%', border: '1px solid black', paddingBottom: '120px', paddingTop: '10px', fontSize: 14 }} wrap="soft" onChange={(e) => this.setState({characterDescription: e.target.value})}/>
                             <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Updated</Button>
                         </form>
                     </div>

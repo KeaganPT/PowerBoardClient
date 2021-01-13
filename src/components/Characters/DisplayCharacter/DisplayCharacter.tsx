@@ -17,7 +17,6 @@ const useStyles = makeStyles({
         minWidth: 475,
         maxWidth: 476,
         border: '2px solid black',
-        marginLeft: '5%',
         marginTop: '10px',
         marginBottom: '20px'
     },
@@ -74,7 +73,7 @@ class Modal extends React.Component<modalProps, modalType> {
     render() {
         return (
             <div>
-                <Button onClick={() => this.handleOpen()} >Delete Character</Button>
+                <Button style={{border: '1px solid black'}} onClick={() => this.handleOpen()} >Delete Character</Button>
                 <Dialog
                     open={this.state.modalOpen}
                     onClose={() => this.handleClose()}
@@ -82,7 +81,7 @@ class Modal extends React.Component<modalProps, modalType> {
                     <div style={{ padding: '10px' }}>
                         <h2>Are You Sure?</h2>
                         <br />
-                        <Button onClick={() => this.props.deleteCharacter(this.props.id)}>Delete</Button>
+                        <Button style={{border: '1px solid black'}} onClick={() => this.props.deleteCharacter(this.props.id)}>Delete</Button>
                     </div>
                 </Dialog>
             </div>

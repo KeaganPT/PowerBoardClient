@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         minWidth: 475,
         maxWidth: 476,
         border: '2px solid black',
-        marginLeft: '5%',
         marginTop: '10px',
         marginBottom: '20px'
     },
@@ -108,7 +107,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                         {props.user.userName}
                                     </Typography>
                                     <UpdatePower token={props.token} id={power.id}/>
-                                    <Button type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
+                                    <Button style={{border: '1px solid black'}} type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
@@ -135,7 +134,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                         {props.user.userName}
                                     </Typography>
                                     <UpdateCharacter token={props.token} id={character.id}/>
-                                    <Button type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
+                                    <Button style={{border: '1px solid black'}} type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
