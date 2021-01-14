@@ -126,7 +126,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
                         <div>
                             <label>Password:</label>
                             <br />
-                            <input type="text" onChange={(e) => this.setState({ passwordSignup: e.target.value })} value={this.state.passwordSignup}></input>
+                            <input type="password" onChange={(e) => this.setState({ passwordSignup: e.target.value })} value={this.state.passwordSignup}></input>
                             <br />
                         </div>
                         <br />
@@ -146,7 +146,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
                         <div>
                             <label>Password:</label>
                             <br />
-                            <input onChange={(e) => this.setState({ passwordLogin: e.target.value })} value={this.state.passwordLogin} />
+                            <input type="password" onChange={(e) => this.setState({ passwordLogin: e.target.value })} value={this.state.passwordLogin} />
                             <br />
                         </div>
                         <br />
