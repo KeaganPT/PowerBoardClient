@@ -42,7 +42,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data.user.role);
+                console.log('fetchSuccess');
                 this.setState({
                     user: data
                 });
@@ -77,13 +77,13 @@ class Auth extends React.Component<propTypes, UserTypes>{
             })
     }
 
-    handleSubmitRegister = (event: React.MouseEvent) => {
+    handleSubmitRegister = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         console.log('helloWorld!')
         this.fetchSignUp();
     }
 
-    handleSubmitLogin = (event: React.MouseEvent) => {
+    handleSubmitLogin = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         console.log('sumbitLogin Success')
         this.fetchLogin()

@@ -39,7 +39,8 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
         .catch(err => console.log(err))
     }
 
-    handleSubmit(event: React.MouseEvent) {
+    handleSubmit(event: any) {
+        event.preventDefault()
         this.createPowerFetch()
     }
 
@@ -68,7 +69,9 @@ class CreatePower extends React.Component<propTypes, createPowerTypes> {
                             <p id="simple-modal-description">
                                Fill in the fields to create a power.
                             </p>
-                            <form className='Modal please' onSubmit={() => this.createPowerFetch()}>
+                            <form className='Modal please' onSubmit={(e) => this.handleSubmit(e)}>
+                                {/* FIND A WAY TO RE:RENDER PAGE WITHOUT REFRESHING VIA A BUTTON, 
+                                HEROKU SERVER IS STOPPED BY REFRESH */}
                                 <label>Name of Power:</label>
                                 <br />
                                 <Input type="text" onChange={(e) => this.setState({powerName: e.target.value})}/>
