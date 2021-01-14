@@ -8,7 +8,7 @@ switch (window.location.hostname) {
         break;
     case 'kpt-power-board-client.herokuapp.com/':
         APIURL = 'https://kpt-powerboard.herokuapp.com'
-        // APIURL = 'http://localhost:3000'
+        // APIURL = 'http://localhost:3000' 
 }
 
 export default APIURL
