@@ -53,6 +53,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
     }
 
     fetchLogin = () => {
+        console.log("clientsidefetch hit")
         fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify({ userName: this.state.userNameLogin, password: this.state.passwordLogin }),
