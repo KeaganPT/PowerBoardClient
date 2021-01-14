@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import APIURL from '../../../helpers/enviorment'
 
 type propTypes ={
     token: string | null
@@ -25,7 +26,7 @@ class CreateCharacter extends React.Component<propTypes, createCharacterTypes> {
     }
 
     createCharacterFetch() {
-        fetch('http://localhost:3000/characters/', {
+        fetch(`${APIURL}/characters/`, {
             method: 'POST',
             body: JSON.stringify({
                 characterName: this.state.characterName,
@@ -56,7 +57,7 @@ class CreateCharacter extends React.Component<propTypes, createCharacterTypes> {
     render(){
         return(
             <div>
-                <button type="button" onClick={() => this.handleOpen()}>
+                <button type="button" style={{marginTop: '5px', border: '1px solid black'}} onClick={() => this.handleOpen()}>
                     Create Character
                 </button>
                 <Dialog
@@ -73,13 +74,13 @@ class CreateCharacter extends React.Component<propTypes, createCharacterTypes> {
                             <br />
                             <Input type="text" onChange={(e) => this.setState({characterName: e.target.value})} />
                             <br />
-                            <label>Tags that relate: </label>
+                            {/* <label>Tags that relate: </label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({tags: [e.target.value]})} />
-                            <br />
+                            <br /> */}
                             <label>Give a quick description about your character</label>
                             <br />
-                            <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})} />
+                            <textarea style={{width: '80%', border: '1px solid black', paddingBottom: '120px', paddingTop: '10px', fontSize: 14 }} wrap="soft" onChange={(e) => this.setState({characterDescription: e.target.value})} />
                             <br />
                             <Button type='submit'>Submit Character</Button>
                         </form>

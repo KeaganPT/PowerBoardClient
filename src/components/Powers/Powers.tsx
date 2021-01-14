@@ -1,11 +1,13 @@
 import React from 'react'
 import DisplayPowers from './DisplayPower/DisplayPower'
+import APIURL from '../../helpers/enviorment'
 
 type powerInterface = {
     powerName: string,
     description: string,
     user: {userName: string}
     id: number
+    updatedAt: Date
 }
 
 type powerTypes = {
@@ -27,7 +29,7 @@ class Powers extends React.Component<propTypes, powerTypes>{
     }
 
     getAllPowers() {
-        fetch('http://localhost:3000/powers/', {
+        fetch(`${APIURL}/powers/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +46,7 @@ class Powers extends React.Component<propTypes, powerTypes>{
     }
 
     deletePower(id: number) {
-        fetch(`http://localhost:3000/powers/${id}`, {
+        fetch(`${APIURL}/powers/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

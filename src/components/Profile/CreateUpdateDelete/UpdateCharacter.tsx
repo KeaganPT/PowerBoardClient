@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Input } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import APIURL from '../../../helpers/enviorment'
 
 type propTypes = {
     token: string | null,
@@ -28,7 +29,7 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
     }
 
     updateCharacterFetch(id: number){
-        fetch(`http://localhost:3000/characters/${id}`, {
+        fetch(`${APIURL}/characters/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 characterName: this.state.characterName,
@@ -58,7 +59,7 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
     render(){
         return(
             <div className="updateModal">
-                <Button type="button" onClick={() => this.handleOpen(this.props.id)}>
+                <Button type="button" style={{border: '1px solid black', marginBottom: '4px'}} onClick={() => this.handleOpen(this.props.id)}>
                     Update Character
                 </Button>
                 <Dialog
@@ -75,13 +76,13 @@ class UpdateCharacter extends React.Component<propTypes, updateCharacterTypes> {
                             <br/>
                             <Input type="text" onChange={(e) => this.setState({characterName: e.target.value})} />
                             <br />
-                            <label>Tag for character</label>
+                            {/* <label>Tag for character</label>
                             <br />
                             <Input type="text" onChange={(e) => this.setState({tags: [e.target.value]})} />
-                            <br />
+                            <br /> */}
                             <label>description for updated character</label>
                             <br />
-                            <Input type="text" onChange={(e) => this.setState({characterDescription: e.target.value})}/>
+                            <textarea style={{width: '80%', border: '1px solid black', paddingBottom: '120px', paddingTop: '10px', fontSize: 14 }} wrap="soft" onChange={(e) => this.setState({characterDescription: e.target.value})}/>
                             <Button type='submit' style={{margin: '5px', border: '2px solid gray'}}>Submit Updated</Button>
                         </form>
                     </div>

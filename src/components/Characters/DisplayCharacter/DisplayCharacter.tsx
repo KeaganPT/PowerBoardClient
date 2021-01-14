@@ -17,8 +17,8 @@ const useStyles = makeStyles({
         minWidth: 475,
         maxWidth: 476,
         border: '2px solid black',
-        marginLeft: '5%',
-        marginTop: '20px'
+        marginTop: '10px',
+        marginBottom: '20px'
     },
     title: {
         fontSize: 14,
@@ -35,6 +35,7 @@ type characterInterface = {
     description: string,
     user: { userName: string, role: string },
     id: number
+    updatedAt: Date
 }
 
 type characterProps = {
@@ -72,7 +73,7 @@ class Modal extends React.Component<modalProps, modalType> {
     render() {
         return (
             <div>
-                <Button onClick={() => this.handleOpen()} >Delete Character</Button>
+                <Button style={{border: '1px solid black'}} onClick={() => this.handleOpen()} >Delete Character</Button>
                 <Dialog
                     open={this.state.modalOpen}
                     onClose={() => this.handleClose()}
@@ -80,7 +81,7 @@ class Modal extends React.Component<modalProps, modalType> {
                     <div style={{ padding: '10px' }}>
                         <h2>Are You Sure?</h2>
                         <br />
-                        <Button onClick={() => this.props.deleteCharacter(this.props.id)}>Delete</Button>
+                        <Button style={{border: '1px solid black'}} onClick={() => this.props.deleteCharacter(this.props.id)}>Delete</Button>
                     </div>
                 </Dialog>
             </div>
@@ -91,6 +92,17 @@ class Modal extends React.Component<modalProps, modalType> {
 const DisplayCharacter = (props: characterProps) => {
     const classes = useStyles()
 
+    let sortedCharacters = props.characterResults.sort((n1,n2) => {
+        if(n1.updatedAt < n2.updatedAt) {
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt) {
+            return -1;
+        }
+
+        return 0;
+    })
 
     return (
         <>

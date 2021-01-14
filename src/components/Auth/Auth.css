@@ -1,0 +1,17 @@
+.authContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.introSpeech {
+    text-align: center;
+    font-family: Arial;
+    font-size: 18;
+}
+
+.container{
+    background-color: #1B90B4;
+    background-size: cover;
+}

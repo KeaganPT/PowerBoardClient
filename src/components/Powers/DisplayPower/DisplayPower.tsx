@@ -16,8 +16,8 @@ const useStyles = makeStyles({
         minWidth: 475,
         maxWidth: 476,
         border: '2px solid black',
-        marginLeft: '5%',
-        marginTop: '20px'
+        marginTop: '10px',
+        marginBottom: '20px'
     },
     title: {
         fontSize: 14,
@@ -33,6 +33,7 @@ type powerInterface = {
     description: string,
     user: {userName: string}
     id: number
+    updatedAt: Date
 }
 
 type powerProps = {
@@ -75,7 +76,7 @@ class Modal extends React.Component<modalProps, modalType> {
     render() {
         return (
             <div>
-                <Button onClick={() => this.handleOpen()} >Delete Character</Button>
+                <Button style={{border: '1px solid black'}} onClick={() => this.handleOpen()} >Delete Character</Button>
                 <Dialog
                     open={this.state.modalOpen}
                     onClose={() => this.handleClose()}
@@ -83,7 +84,7 @@ class Modal extends React.Component<modalProps, modalType> {
                     <div style={{ padding: '10px' }}>
                         <h2>Are You Sure?</h2>
                         <br />
-                        <Button type="submit" onClick={() => this.handleClick()}>Delete</Button>
+                        <Button style={{border: '1px solid black'}} type="submit" onClick={() => this.handleClick()}>Delete</Button>
                     </div>
                 </Dialog>
             </div>
@@ -95,15 +96,28 @@ class Modal extends React.Component<modalProps, modalType> {
 const DisplayPowers = (props: powerProps) => {
     const classes = useStyles();
 
+    let sortedPowers = props.powerResults.sort((n1, n2) => {
+        if(n1.updatedAt < n2.updatedAt){
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt){
+            return -1;
+        }
+
+        return 0;
+    }) 
+
     return(
         <div>
-            {props.powerResults.map((power: powerInterface, index: number) => {
+            {sortedPowers.map((power: powerInterface, index: number) => {
 
                 let isHidden
                 
                 if(props.userRole !== 'admin'){
-                    isHidden = false
+                    isHidden = true
                 }
+
 
                 return(
                     <div className={classes.divContain} key={index}>
@@ -121,7 +135,7 @@ const DisplayPowers = (props: powerProps) => {
                                     <Typography variant="body2" component="p">
                                         {power.user.userName}
                                     </Typography>
-                                    <div className="modalDiv">
+                                    <div className="modalDiv" hidden={isHidden}>
                                         <UpdatePower 
                                             id={power.id}
                                             token={props.token}

@@ -1,5 +1,5 @@
 import React from 'react'
-// import './ProfileDisplay.css'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions'
@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         minWidth: 475,
         maxWidth: 476,
         border: '2px solid black',
-        marginLeft: '5%',
         marginTop: '10px',
         marginBottom: '20px'
     },
@@ -36,6 +35,7 @@ type powerInterface = {
     powerName: string,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 type characterInterface = {
@@ -43,6 +43,7 @@ type characterInterface = {
     tags: Array<string>,
     description: string,
     id: number
+    updatedAt: Date
 }
 
 type PropsInterface = {
@@ -60,6 +61,29 @@ type PropsInterface = {
 const ProfileDisplay = (props: PropsInterface) => {
     const classes = useStyles();
 
+    let sortedPowers = props.userPowers.sort((n1, n2) => {
+        if(n1.updatedAt < n2.updatedAt){
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt){
+            return -1;
+        }
+
+        return 0;
+    }) 
+
+    let sortedCharacters = props.userCharacters.sort((n1,n2) => {
+        if(n1.updatedAt < n2.updatedAt) {
+            return 1;
+        }
+
+        if(n1.updatedAt > n2.updatedAt) {
+            return -1;
+        }
+
+        return 0;
+    })
 
     return(
         <div className="container">
@@ -83,7 +107,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                         {props.user.userName}
                                     </Typography>
                                     <UpdatePower token={props.token} id={power.id}/>
-                                    <Button type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
+                                    <Button style={{border: '1px solid black'}} type="submit" onClick={() => props.deletePower(power.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
@@ -110,7 +134,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                                         {props.user.userName}
                                     </Typography>
                                     <UpdateCharacter token={props.token} id={character.id}/>
-                                    <Button type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
+                                    <Button style={{border: '1px solid black'}} type="submit" onClick={() => props.deleteCharacter(character.id, props.token)}>DELETE</Button>
                                 </CardContent>
                             </Card>
                         </div>
