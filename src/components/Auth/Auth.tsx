@@ -62,17 +62,19 @@ class Auth extends React.Component<propTypes, UserTypes>{
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data.user.role);
+                // console.log(data.user);
                 console.log('successful fetch');
                 this.setState({
                     user: data
                 });
                 this.props.updateToken(data.sessionToken);
-                // console.log(this.state.user);
                 this.props.setUser(data.user.role);
                 
             })
-            .catch(err => console.log('error:', err))
+            .catch(err => {
+                console.log('error:', err);
+                //make a state change for local storage for login success and failure?
+            })
     }
 
     handleSubmitRegister = (event: React.MouseEvent) => {
