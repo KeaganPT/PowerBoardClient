@@ -88,7 +88,7 @@ const ProfileDisplay = (props: PropsInterface) => {
     return(
         <div className="container">
             <div className="powerMap">
-                {props.userPowers.length > 0 && props.userPowers.map((power: powerInterface, index: number) => {
+                {sortedPowers.length > 0 && sortedPowers.map((power: powerInterface, index: number) => {
                     if(props.viewConductor === 0) {
                     return(
                         <div className={classes.divContain} key={index}>
@@ -115,7 +115,7 @@ const ProfileDisplay = (props: PropsInterface) => {
                 })}
             </div>
             <div className="characterMap">
-                {props.userCharacters.length > 0 && props.userCharacters.map((character: characterInterface, index: number) => {
+                {sortedCharacters.length > 0 && sortedCharacters.map((character: characterInterface, index: number) => {
                     if(props.viewConductor === 1) { 
                     return(
                         <div className={classes.divContain} key={index}>
