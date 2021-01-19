@@ -54,7 +54,7 @@ class Auth extends React.Component<propTypes, UserTypes>{
 
     fetchLogin = () => {
         console.log("clientsidefetch hit")
-        fetch(`${APIURL}/user/login`, {
+        fetch(`https://kpt-powerboard.herokuapp.com/user/login`, {
             method: 'POST',
             body: JSON.stringify({ userName: this.state.userNameLogin, password: this.state.passwordLogin }),
             headers: new Headers({
