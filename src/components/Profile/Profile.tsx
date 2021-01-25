@@ -47,7 +47,6 @@ class Profile extends React.Component<propTypes, userTypes>{
 
     //Fetch User request
     fetchUser() {
-        console.log('I am running')
         fetch(`${APIURL}/user/mine`, {
             method: 'GET',
             headers: new Headers ({

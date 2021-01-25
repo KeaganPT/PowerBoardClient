@@ -14,7 +14,8 @@ type propTypes = {
     updateToken(newToken: String): void,
     token: string | null,
     user: string | null,
-    setUser(user: String): void
+    setUser(user: String): void,
+    clearToken(): void
 }
 
 const styles = {
@@ -35,8 +36,15 @@ const styles = {
 
 class Sitebar extends React.Component<propTypes, {}> {
 
+    
+    
     render() {
-
+        let path
+        if(this.props.token !== ''){
+          path='/profile'  
+        } else {
+            path='/'
+        }
         return (
             <div >
                 <div className="sitebar-list" style={styles.root}>
@@ -48,8 +56,8 @@ class Sitebar extends React.Component<propTypes, {}> {
                             <Typography className="title" variant="h6" style={styles.title}>
                                 The PowerBoard
                             </Typography>
-                            <Button><Link className="link" to="/profile">Profile</Link></Button>
-                            <Button style={{borderLeft: "5px", borderColor: "red"}}><Link className="link" to="/">SignUp/Login</Link></Button>
+                            <Button><Link className="link" to={path}>Profile</Link></Button>
+                            <Button onClick={this.props.clearToken} style={{borderLeft: "5px", borderColor: "red"}} ><Link className="link" to="/">SignUp/Login <br /> Logout</Link></Button>
                         </Toolbar>
                     </AppBar>
                 </div>

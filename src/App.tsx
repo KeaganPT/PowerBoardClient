@@ -17,6 +17,7 @@ class App extends React.Component<{}, tokenTypes> {
     }
     this.updateToken = this.updateToken.bind(this);
     this.setUser = this.setUser.bind(this);
+    this.clearToken = this.clearToken.bind(this);
   }
 
   updateToken(newToken : string) {
@@ -29,6 +30,11 @@ class App extends React.Component<{}, tokenTypes> {
     this.setState({user: userRole})
   }
 
+  clearToken() {
+    localStorage.clear();
+    this.setState({sessionToken: ''})
+  }
+
   render(){
     
   return (
@@ -38,7 +44,8 @@ class App extends React.Component<{}, tokenTypes> {
           updateToken={this.updateToken} 
           token={this.state.sessionToken} 
           user={this.state.user}
-          setUser={this.setUser}  
+          setUser={this.setUser} 
+          clearToken={this.clearToken} 
         />
       </Router>
     </div>
